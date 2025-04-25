@@ -1,16 +1,14 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  liga: string;
+};
 
-export default function liga({jahr, text, image}: Props) {
+export default function Liga({liga}: Props) {
   return (
     <div className='border grid grid-cols-2 h-50'>
       <div className='p-4'>
-        <h2 className='font-bold text-xl'>{jahr}</h2>
-        <h4>{text}</h4>
-      </div>
-      <div className='w-full'>
-        <img src={image} alt="" className='object-cover w-full h-full'/>
+        <h2 className='font-bold text-xl'>{liga}</h2>
       </div>
     </div>
   )

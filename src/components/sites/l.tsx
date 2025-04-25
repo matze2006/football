@@ -1,12 +1,57 @@
-import React from 'react'
-import liga from "./../Liga"
+import React, { useEffect, useState } from 'react'
+import Liga from "./../Liga"
 
-type Props = {}
+type League = {
+  leagueId: number;
+  leagueName: string;
+  leagueShortcut: string;
+  leagueSaison: number;
+};
+
+type Props = {
+}
 
 export default function l({}: Props) {
+  const [leagues, setLeagues] = useState<League[]>([]);
+  const [filteredLeagues, setFilteredLeagues] = useState<League[]>([]);
+
+  useEffect(()=>{
+    fetch("https://api.openligadb.de/getavailableleagues")
+      .then((res) => res.json())
+      .then((data: League[]) =>{
+        console.log("Leagues", data)
+        const bundesligaLeagues = data.filter(
+          (league) => league.leagueShortcut.toLowerCase() === "b1"
+        );
+        setLeagues(bundesligaLeagues);
+        setFilteredLeagues(bundesligaLeagues);
+      })
+      .catch((error) => console.error("Fehler beim Laden der Ligen:", error));
+    }, []);
+
+  const filterLiga = (filter: string) => {
+    let filtered = leagues.filter((league) =>
+      league.leagueName.toLowerCase().includes(filter.toLowerCase())
+    );
+    setFilteredLeagues(filtered);
+  };
+
+
   return (
-    <div className="font-bold text-4xl">
+    <div className='pl-4 pr-4'>
+      <div className="font-bold text-4xl">
         <h1 className="justify-self-center">Bundesliga Übersicht</h1>
+      </div>
+      <div>
+        <input className="border m-5" type="text" placeholder="Search" onChange={(el) =>{
+          filterLiga(el.target.value);
+        }}/>
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-60">
+      {filteredLeagues.map((league) => (
+         <Liga key={league.leagueId} liga={league.leagueName} />
+      ))}
+      </div>
     </div>
   )
 }
