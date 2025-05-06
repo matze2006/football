@@ -22,6 +22,8 @@ export default function l({ }: Props) {
         console.log("Leagues", data)
         const bundesligaLeagues = data.filter(
           (league) => league.leagueShortcut.toLowerCase() === "bl1"
+          || league.leagueShortcut.toLowerCase() === "bl2" 
+          || league.leagueShortcut.toLowerCase() === "bl3"
         );
         setLeagues(bundesligaLeagues);
         setFilteredLeagues(bundesligaLeagues);
@@ -36,11 +38,10 @@ export default function l({ }: Props) {
     setFilteredLeagues(filtered);
   };
 
-
   return (
     <div className='pl-4 pr-4'>
       <div className="font-bold text-4xl">
-        <h1 className="justify-self-center">Bundesliga Übersicht</h1>
+        <h1 className="justify-self-center">Bundesliga Übersicht (1,2 und 3)</h1>
       </div>
       <div>
         <input className="border m-5" type="text" placeholder="Search" onChange={(el) => {
