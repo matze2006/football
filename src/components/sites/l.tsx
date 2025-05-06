@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Liga from "./../Liga"
+import { useEffect, useState } from 'react';
+import Liga from "./../Liga";
 
 type League = {
   leagueId: number;
@@ -11,23 +11,23 @@ type League = {
 type Props = {
 }
 
-export default function l({}: Props) {
+export default function l({ }: Props) {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [filteredLeagues, setFilteredLeagues] = useState<League[]>([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("https://api.openligadb.de/getavailableleagues")
       .then((res) => res.json())
-      .then((data: League[]) =>{
+      .then((data: League[]) => {
         console.log("Leagues", data)
         const bundesligaLeagues = data.filter(
-          (league) => league.leagueShortcut.toLowerCase() === "b1"
+          (league) => league.leagueShortcut.toLowerCase() === "bl1"
         );
         setLeagues(bundesligaLeagues);
         setFilteredLeagues(bundesligaLeagues);
       })
       .catch((error) => console.error("Fehler beim Laden der Ligen:", error));
-    }, []);
+  }, []);
 
   const filterLiga = (filter: string) => {
     let filtered = leagues.filter((league) =>
@@ -43,14 +43,14 @@ export default function l({}: Props) {
         <h1 className="justify-self-center">Bundesliga Übersicht</h1>
       </div>
       <div>
-        <input className="border m-5" type="text" placeholder="Search" onChange={(el) =>{
+        <input className="border m-5" type="text" placeholder="Search" onChange={(el) => {
           filterLiga(el.target.value);
-        }}/>
+        }} />
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-60">
-      {filteredLeagues.map((league) => (
-         <Liga key={league.leagueId} liga={league.leagueName} />
-      ))}
+      <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 pt-10">
+        {filteredLeagues.map((league) => (
+          <Liga key={league.leagueId} liga={league.leagueName} />
+        ))}
       </div>
     </div>
   )
