@@ -7,6 +7,6 @@ type Props = {
 
 export default function TeamItem({team}: Props) {
   return (
-    <div className='bg-green-400 p-4'>{team.teamName}</div>
+    <div className=''>{team.teamName}</div>
   )
 }

@@ -42,9 +42,6 @@ export default function LigaContainer({onSelectLiga}: Props) {
 
   return (
     <div className='pl-4 pr-4'>
-      <div className="font-bold text-4xl">
-        <h1 className="justify-self-center">Bundesliga (1,2 und 3) Übersicht</h1>
-      </div>
       <div>
         <input className="border m-5" type="text" placeholder="Search" onChange={(el) => {
           filterLiga(el.target.value);

@@ -24,8 +24,8 @@ export default function LigaDetails({ season }: Props) {
     }
 
     return (
-        <div>LigaDetails for season {season.season}
-        {teams.map((team:Team)=><TeamItem team={team}/>)}
+        <div className='pt-25'>
+            {teams.map((team:Team)=><TeamItem team={team}/>)}
         </div>
     )
 }
