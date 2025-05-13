@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
-import Liga from "./../Liga";
+import Liga from './Liga';
+
 
 type League = {
   leagueId: number;
   leagueName: string;
   leagueShortcut: string;
-  leagueSaison: number;
+  leagueSeason: string;
 };
 
 type Props = {
+    onSelectLiga:(id:string, season:string)=>void;
 }
 
-export default function l({ }: Props) {
+export default function LigaContainer({onSelectLiga}: Props) {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [filteredLeagues, setFilteredLeagues] = useState<League[]>([]);
 
@@ -19,7 +21,7 @@ export default function l({ }: Props) {
     fetch("https://api.openligadb.de/getavailableleagues")
       .then((res) => res.json())
       .then((data: League[]) => {
-        console.log("Leagues", data)
+        
         const bundesligaLeagues = data.filter(
           (league) => league.leagueShortcut.toLowerCase() === "bl1"
           || league.leagueShortcut.toLowerCase() === "bl2" 
@@ -41,7 +43,7 @@ export default function l({ }: Props) {
   return (
     <div className='pl-4 pr-4'>
       <div className="font-bold text-4xl">
-        <h1 className="justify-self-center">Bundesliga Übersicht (1,2 und 3)</h1>
+        <h1 className="justify-self-center">Bundesliga (1,2 und 3) Übersicht</h1>
       </div>
       <div>
         <input className="border m-5" type="text" placeholder="Search" onChange={(el) => {
@@ -50,7 +52,7 @@ export default function l({ }: Props) {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 pt-10">
         {filteredLeagues.map((league) => (
-          <Liga key={league.leagueId} liga={league.leagueName} />
+          <Liga key={league.leagueId} liga={league.leagueName} onClick={()=>onSelectLiga(league.leagueShortcut, league.leagueSeason.toString())} />
         ))}
       </div>
     </div>
