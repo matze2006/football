@@ -2,8 +2,7 @@ import { useState } from 'react';
 import LigaContainer from '../LigaContainer'
 import LigaDetails from '../LigaDetails'
 import { Season } from '../types';
-import übung from '../übung';
-import übung2 from '../übung2';
+import Test from '../test';
 
 type Props = {}
 
@@ -25,7 +24,7 @@ export default function Main({}: Props) {
             </div>
         </div>
         */}
-        <übung/>
+        <Test title="Users"/>
     </div>
   )
 }
