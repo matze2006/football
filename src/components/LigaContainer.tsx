@@ -41,13 +41,13 @@ export default function LigaContainer({onSelectLiga}: Props) {
   };
 
   return (
-    <div className='pl-4 pr-4'>
-      <div>
-        <input className="border m-5" type="text" placeholder="Search" onChange={(el) => {
+    <div className=''>
+      <div className='h-15'>
+        <input className="border m-5 rounded" type="text" placeholder="Search" onChange={(el) => {
           filterLiga(el.target.value);
         }} />
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 pt-10">
+      <div className="grid grid-cols-2 lg:grid-cols-2 gap-5 pt-10 pl-5 pr-5">
         {filteredLeagues.map((league) => (
           <Liga key={league.leagueId} liga={league.leagueName} onClick={()=>onSelectLiga(league.leagueShortcut, league.leagueSeason.toString())} />
         ))}

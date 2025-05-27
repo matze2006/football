@@ -23,15 +23,15 @@ export default function LigaDetails({ season }: Props) {
 
     return (
         <div>
-            <div className='grid grid-cols-5 p-4 border'>
-                <div>Name</div>
-                <div>Punkte</div>
-                <div>Gewonnen</div>
-                <div>Verloren</div>
-                <div>Unentschieden</div>
+            <div className='grid grid-cols-5 p-4 border-b-black border-b-3 mt-25 mb-2 pl-5 pr-5'>
+                <div className='font-bold justify-self-center'>Name</div>
+                <div className='font-bold justify-self-center'>Punkte</div>
+                <div className='font-bold justify-self-center'>Gewonnen</div>
+                <div className='font-bold justify-self-center'>Verloren</div>
+                <div className='font-bold justify-self-center'>Unentschieden</div>
             </div>
 
-            <div className='pt-25 grid gap-2 h-90 '>
+            <div className='grid gap-2 h-90 ml-5 mr-5'>
                 {teams.map((team: Team) => <TeamItem team={team} />)}
             </div>
         </div>
