@@ -23,6 +23,7 @@ export default function LigaDetails({ season }: Props) {
 
     return (
         <div>
+            <div></div>
             <div className='grid grid-cols-5 p-4 border-b-black border-b-3 mt-25 mb-2 pl-5 pr-5'>
                 <div className='font-bold justify-self-center'>Name</div>
                 <div className='font-bold justify-self-center'>Punkte</div>
