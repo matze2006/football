@@ -3,14 +3,14 @@ import Liga from './Liga';
 
 
 type League = {
-  leagueId: number;
+  leagueId: string;
   leagueName: string;
   leagueShortcut: string;
   leagueSeason: string;
 };
 
 type Props = {
-    onSelectLiga:(id:string, season:string)=>void;
+    onSelectLiga:(id:string, season:string, leagueName:string)=>void;
 }
 
 export default function LigaContainer({onSelectLiga}: Props) {
@@ -49,7 +49,7 @@ export default function LigaContainer({onSelectLiga}: Props) {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-2 gap-5 pt-10 pl-5 pr-5">
         {filteredLeagues.map((league) => (
-          <Liga key={league.leagueId} liga={league.leagueName} onClick={()=>onSelectLiga(league.leagueShortcut, league.leagueSeason.toString())} />
+          <Liga key={league.leagueId} liga={league.leagueName} onClick={()=>onSelectLiga(league.leagueShortcut, league.leagueSeason.toString(), league.leagueName)} />
         ))}
       </div>
     </div>

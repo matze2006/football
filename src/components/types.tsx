@@ -1,6 +1,7 @@
 export interface Season {
     id:string;
     season:string;
+    leagueName:string
 }
 
 export interface Team {
